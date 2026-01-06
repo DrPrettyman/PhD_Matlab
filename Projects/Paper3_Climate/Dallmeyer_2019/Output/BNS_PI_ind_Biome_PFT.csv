@@ -1,0 +1,13 @@
+# PI BNS for all individual biomes and models based on the PFT-biomisations, against BIOME6000 reconstructions, Biomes for which no BNS could be calculated are asasigned to -2.0!
+
+#       Model	       MPI-T63 MPI-T31 IPSL31  IPSL63  HadGEM2 CLIM-LPJ MIROC  CLIMBER
+1	trop.forest	0.87	0.40	0.29	0.26	0.35	0.79	0.29	0.66
+2	warm.forest	0.38	0.15	0.12	0.20	0.57	0.39	0.35	0.00
+3	temp.forest	0.88	0.69	0.66	0.60	0.86	0.34	0.55	0.75
+4	bor.forest	0.83	0.39	0.75	0.79	0.74	0.84	0.69	0.43
+5	Savanna		0.59	0.45	0.43	0.44	0.39	0.25	0.07	0.00
+6	Grassland	0.72	0.44	0.60	0.70	0.67	0.69	0.21	0.41
+7	Desert		0.43	0.17	0.30	0.32	0.48	0.67	0.17	0.15
+8	Tundra		0.71	0.68	0.33	0.50	0.44	0.68	0.11	0.58
+9	pol.desert	-2.00	-2.00	-2.00	-2.00	-2.00	-2.00	-2.00	-2.00
+0	total		0.74	0.49	0.51	0.55	0.67	0.56	0.40	0.48

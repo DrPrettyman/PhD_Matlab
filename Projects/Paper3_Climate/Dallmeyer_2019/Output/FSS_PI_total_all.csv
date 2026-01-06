@@ -1,0 +1,12 @@
+# PI total FSS for the PFT-based biomisation and the climate-based biomisation, against RF99, Simulations for which no FSS was calculated are assigend to -2.0!
+# 	Model          PFTvsRF CLIvsRF 
+1	MPI-ESM-T63	0.27	0.15
+2	MPI-ESM-T31	0.08	0.03
+3	IPSL-ESM-T31	0.13	0.05
+4	IPSL-ESM-T63	0.13	0.15
+5	HadGEM2-ESM	0.08	0.15
+6	CLIM-LPJ	0.00	0.21
+7	MIROC-ESM	0.01	0.11
+8	CLIMBER		0.08	0.00
+9	CRU-TS4		-2.0	-2.0	
+10	CRU-TS4_T63	-2.0	0.13

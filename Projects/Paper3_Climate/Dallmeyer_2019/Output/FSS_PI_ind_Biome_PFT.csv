@@ -1,0 +1,13 @@
+# FSS for all individual biomes and models based on the PFT-biomisations, against RF99
+
+        Model	       MPI-T63 MPI-T31 IPSL31  IPSL63  HadGEM2 CLIM-LPJ MIROC  CLIMBER 
+1	trop.forest	0.43	0.28	0.11	0.33	0.35	0.34	0.23	0.18
+2	warm.forest	-0.34	-0.45	-0.48	-0.37	-0.31	-0.42	-0.53	-2.00
+3	temp.forest	0.26	0.22	0.01	-0.02	0.13	-0.11	-0.03	0.17
+4	bor.forest	0.35	-0.16	0.34	0.10	0.34	0.06	0.20	0.10
+5	Savanna		0.36	0.03	0.13	0.13	-0.18	-0.37	-0.38	-0.22
+6	Grassland	0.29	0.20	0.10	0.09	-0.06	0.06	-0.23	-0.06
+7	Desert		0.45	0.39	0.36	0.43	0.16	0.01	0.39	0.33
+8	Tundra		0.29	-0.09	0.27	0.22	-0.03	0.10	0.18	-0.19
+9	pol.desert	0.32	0.29	0.32	0.30	0.30	0.28	0.31	0.28
+0	total		0.27	0.08	0.13	0.13	0.08	0.00	0.01	0.08

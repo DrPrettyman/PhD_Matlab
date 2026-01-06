@@ -1,0 +1,25 @@
+# GMT palette YlGn_09.cpt
+# 
+# This product includes color specifications and designs
+# developed by Cynthia Brewer (http://colorbrewer.org/).
+# 
+# Converted to the cpt format by J.J.Green
+# Sequential palette with 9 colours
+#
+# colorrbar to plot simulated vegetation fractions (and ice-mask in blue)
+# 
+# COLOR_MODEL = RGB
+-50.0 150 208 255     0.00 150 208 255
+   0.00 255 250 215   0.1 255 250 215
+ 0.1 247 248 185   0.2 230 248 180
+ 0.2 210 235 163   0.3 210 235 163
+ 0.3 173 221 142   0.4 173 221 142
+ 0.4 120 198 121   0.5 120 198 121
+ 0.5 065 171 093   0.6 065 171 093
+ 0.6 035 132 067   0.7 035 132 067
+ 0.7 000 90 055   0.8 000 90 055
+ 0.8 000 069 041   0.9 000 069 041
+ 0.9 028 036 026   1.1 028 036 026
+
+B 255 255 255
+N 255 255 255

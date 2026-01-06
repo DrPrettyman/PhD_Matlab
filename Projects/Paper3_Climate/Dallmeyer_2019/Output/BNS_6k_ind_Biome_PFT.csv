@@ -1,0 +1,13 @@
+# 6k BNS for all individual biomes and models based on the PFT-biomisations, against BIOME6000 reconstructions
+
+#        Model         MPI-T63  IPSL31  HadGEM2 LPJ    MIROC
+1	trop.forest	0.61	0.43	0.63	0.63	0.30
+2	warm.forest	0.64	0.18	0.61	0.49	0.35
+3	temp.forest	0.84	0.61	0.87	0.34	0.57
+4	bor.forest	0.78	0.81	0.64	0.93	0.66
+5	Savanna		0.36	0.09	0.20	0.11	0.03
+6	Grassland	0.52	0.56	0.50	0.59	0.12
+7	Desert		0.27 	0.17	0.56	0.70	0.06
+8	Tundra		0.54	0.23	0.35	0.60	0.05
+9	pol.desert	NA	NA	NA	NA	NA
+0	total		0.72	0.54	0.69	0.50	0.44

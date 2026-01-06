@@ -1,0 +1,10 @@
+1 trop.forest
+2 warm.forest
+3 temp.forest
+4 bor.forest
+5 Savanna
+6 Grassland
+7 Desert
+8 Tundra
+9 pol.desert
+0 total

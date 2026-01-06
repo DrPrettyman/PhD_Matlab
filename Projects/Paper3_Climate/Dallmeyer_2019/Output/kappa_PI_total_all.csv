@@ -1,0 +1,14 @@
+# PI total kappa for the PFT-based biomisation and the climate-based biomisation, against RF99 and BIOME6000 reconstructions (Rec). Simulations for which no FSS was calculated are assigend to -2.0!
+
+# 	Model          PFTvsRF CLIvsRF PFTvsRec CLIvsRec	        
+1	MPI-ESM-T63	0.79	0.65	0.49	0.42
+2	MPI-ESM-T31	0.62	0.56	0.34	0.29
+3	IPSL-ESM-T31	0.72	0.61	0.33	0.36
+4	IPSL-ESM-T63	0.63	0.70	0.24	0.47
+5	HadGEM2-ESM	0.62	0.66	0.33	0.38
+6	CLIM-LPJ	0.56	0.66	0.20	0.40
+7	MIROC-ESM	0.54	0.66	0.26	0.35
+8	CLIMBER		0.60	0.62	0.37	0.23
+9	CRU-TS4		-2.00	-2.00	-2.00	0.47
+10	CRU-TS4_T63	-2.00	0.68	-2.00	0.46
+

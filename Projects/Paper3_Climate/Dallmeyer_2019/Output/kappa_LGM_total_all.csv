@@ -1,0 +1,8 @@
+#LGM total kappa for the PFT-based biomisation and the climate-based biomisation, against BIOME6000 reconstructions (Rec). 
+
+#       Model          PFTvsRec CLIvsRec  
+1	MPI-ESM-T63	0.19	0.27
+2	MPI-ESM-T31	0.07	0.11
+3	IPSL-ESM-T63	0.13	-2.0
+4	MIROC-ESM	0.13	0.2
+5	CLIMBER		0.23	0.06

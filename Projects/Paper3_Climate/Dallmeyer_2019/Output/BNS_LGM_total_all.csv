@@ -1,0 +1,9 @@
+# LGM total BNS for the PFT-based biomisation and the climate-based biomisation, against BIOME6000 reconstructions (Rec). 
+
+#       Model          PFTvsRec CLIvsRec
+1	MPI-ESM-T63	0.57	0.59
+2	MPI-ESM-T31	0.26	0.26
+3	IPSL-ESM-T31	0.32	0.45
+4	IPSL-ESM-T63	0.41	-2.0
+5	MIROC-ESM	0.24	0.34
+6	CLIMBER		0.35	0.23

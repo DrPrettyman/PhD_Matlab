@@ -1,0 +1,263 @@
+%% test the reconstruct_mu function
+p = @(mu)(log10(...
+    (1+mu^2-2*mu*cos(0.2*pi))/(1+mu^2-2*mu*cos(0.02*pi))...
+    ));
+mu = rand();
+beta = p(mu);
+mu_new = reconstruct_mu_func(beta);
+
+disp(['mu = ',num2str(mu),' beta = ',num2str(beta)])
+disp(['reconstructed mu = ',num2str(mu_new)])
+disp(['difference = ',num2str(abs(mu_new)-mu)])
+disp(' ')
+clear p mu beta mu_new
+
+
+%%
+no_sizes=20;
+sizeAR_vals = floor(10.^linspace(6,2,no_sizes)');
+
+N = 100;
+sigma = 1;
+mu_vals = linspace(0,1,N)';
+
+mu_PS = zeros(N,no_sizes);
+mu_ACF1 = zeros(N,no_sizes);
+
+for k = 1:no_sizes
+    sizeAR = sizeAR_vals(k);
+    disp([num2str(k),'/',num2str(no_sizes),': Calculating mu for ',...
+        num2str(N),' series of length ',num2str(sizeAR)])
+    for i = 1:N
+        mu = mu_vals(i);
+        AR = zeros(sizeAR,1); %create an AR(1) time series
+        for j = 2:sizeAR
+            AR(j) = mu*AR(j-1)+sigma*randn();
+        end
+        beta = PSE_new(AR);
+        mu_PS(i,k)   = reconstruct_mu_func(beta);
+        mu_ACF1(i,k) = ACF(AR,1);
+    end
+end
+clear i j k beta AR mu sizeAR
+disp(' ')
+
+%% calculate the mean of the differences
+disp('calculating the mean of the differences')
+mean_diff_ACF1 = mean(abs(mu_ACF1-mu_vals));
+mean_diff_PS   = mean(abs(mu_PS-mu_vals));
+
+smallmu_index = find(mu_vals<=0.4);
+mean_diff_ACF1_small = mean(abs(mu_ACF1(smallmu_index,:)-mu_vals(smallmu_index)));
+mean_diff_PS_small   = mean(abs(mu_PS(smallmu_index,:)-mu_vals(smallmu_index)));
+
+bigmu_index = find(mu_vals>=0.6);
+mean_diff_ACF1_big = mean(abs(mu_ACF1(bigmu_index,:)-mu_vals(bigmu_index)));
+mean_diff_PS_big   = mean(abs(mu_PS(bigmu_index,:)-mu_vals(bigmu_index)));
+
+%% Plot
+% figure
+% hold on
+% plot(log10(sizeAR_vals), mean_diff_PS, 'Color','k','Marker','^')
+% plot(log10(sizeAR_vals), mean_diff_ACF1, 'Color','k','Marker','s')
+% ylabel('reconstructed value for \mu')
+% xlabel('time series length  (log10)')
+
+
+%% Nice plot
+
+
+fig1 = figure;
+fig1.Units = 'centimeters';
+fig1.Position = [0,0,30,30];
+fig1.Resize = 'off';
+fontsize = 18;
+linethickness = 2;
+hold on
+
+pos0 = [0.07 0.56  0.92 0.40];
+pos1 = [0.07 0.09 0.40 0.35];
+pos2 = pos1 + [0.52 0 0 0];
+ylimits = [0,1];
+xlimits = [0,1];
+
+colPS   = 'k';
+colACF1 = 'r';
+mksize  = 10;
+
+ax0 = subplot('Position',pos0);
+hold on
+plot(ax0,log10(sizeAR_vals), mean_diff_PS, 'LineWidth', linethickness,...
+    'Color',colPS,'Marker','^', 'MarkerSize',mksize)
+plot(ax0,log10(sizeAR_vals), mean_diff_ACF1, 'LineWidth', linethickness,...
+    'Color',colACF1,'Marker','s', 'MarkerSize',mksize)
+ylabel('reconstructed value for \mu')
+xlabel('time series length  (log10)')
+legend('PS', 'ACF1')
+annotation_string = '(0\leq\mu\leq 1)';
+ann1 = annotation('textbox',...
+    pos0 + [0.02 0 0 0],...
+    'String','a',...
+    'FontSize', 30',...
+    'LineStyle', 'none',...
+    'FitBoxToText', 'off',...
+    'FontName', 'Times New Roman');
+% ann2 = annotation('textbox',...
+%     pos0 + [0.05 -0.008 0 0],...
+%     'String',annotation_string,...
+%     'FontSize', 20',...
+%     'LineStyle', 'none',...
+%     'FitBoxToText', 'off',...
+%     'FontName', 'Times New Roman');
+set(gca,'YGrid','on','XGrid','on','XAxisLocation','bottom',...
+    'box','on','FontSize',fontsize, 'FontName', 'Times New Roman')
+
+ax1 = subplot('Position',pos1);
+hold on
+plotPS2 = mu_PS(:,end);
+for i = 1:numel(plotPS2)
+    if plotPS2(i)<0.056; plotPS2(i)=-0.1; end
+end
+plot(ax1,mu_vals, plotPS2, 'LineWidth', linethickness,...
+    'Color',colPS,'Marker','^', 'MarkerSize',mksize)
+plot(ax1,mu_vals, mu_ACF1(:,end), 'LineWidth', linethickness,...
+    'Color',colACF1,'Marker','s', 'MarkerSize',mksize)
+ylim(ylimits)
+xlim(xlimits)
+xlabel('AR(1) model parameter \mu')
+ylabel('reconstructed value for \mu')
+annotation_string = '(length = 10^2)';
+ann1 = annotation('textbox',...
+    pos1 + [0.02 0 0 0],...
+    'String','b',...
+    'FontSize', 30',...
+    'LineStyle', 'none',...
+    'FitBoxToText', 'off',...
+    'FontName', 'Times New Roman');
+ann2 = annotation('textbox',...
+    pos1 + [0.05 0 0 0],...
+    'String',annotation_string,...
+    'FontSize', 20',...
+    'LineStyle', 'none',...
+    'FitBoxToText', 'off',...
+    'FontName', 'Times New Roman');
+set(gca,'YGrid','on','XGrid','on','XAxisLocation','bottom',...
+    'box','on','FontSize',fontsize, 'FontName', 'Times New Roman')
+
+ax2 = subplot('Position',pos2);
+hold on
+plotPS6= mu_PS(:,1); 
+for i = 1:numel(plotPS6)
+    if plotPS6(i)<0.056; plotPS6(i)=-0.1; end
+end
+plot(ax2,mu_vals, plotPS6, 'LineWidth', linethickness,...
+    'Color',colPS,'Marker','^', 'MarkerSize',mksize)
+plot(ax2,mu_vals, mu_ACF1(:,1), 'LineWidth', linethickness,...
+    'Color',colACF1,'Marker','s', 'MarkerSize',mksize)
+ylim(ylimits)
+xlim(xlimits)
+xlabel('AR(1) model parameter \mu')
+ylabel('reconstructed value for \mu')
+annotation_string = '(length = 10^6)';
+ann1 = annotation('textbox',...
+    pos2 + [0.02 0 0 0],...
+    'String','c',...
+    'FontSize', 30',...
+    'LineStyle', 'none',...
+    'FitBoxToText', 'off',...
+    'FontName', 'Times New Roman');
+ann2 = annotation('textbox',...
+    pos2 + [0.05 0 0 0],...
+    'String',annotation_string,...
+    'FontSize', 20',...
+    'LineStyle', 'none',...
+    'FitBoxToText', 'off',...
+    'FontName', 'Times New Roman');
+set(gca,'YGrid','on','XGrid','on','XAxisLocation','bottom',...
+    'box','on','FontSize',fontsize, 'FontName', 'Times New Roman')
+set(gca,'YGrid','on','XGrid','on','YAxisLocation','left',...
+    'box','on','FontSize',fontsize, 'FontName', 'Times New Roman')
+
+clear plotPS2 plotPS6
+clear ann1 ann2 pos0 pos1 pos2
+clear fontsize linethickness ylimits xlimits colPS colACF1 mksize
+
+
+%% Nice plot 2
+
+fig1 = figure;
+fig1.Units = 'centimeters';
+fig1.Position = [0,0,30,30];
+fig1.Resize = 'off';
+fontsize = 18;
+linethickness = 2;
+hold on
+
+pos0 = [0.07 0.56  0.92 0.40];
+pos1 = [0.07 0.09  0.92 0.40];
+pos2 = pos1 + [0.52 0 0 0];
+ylimits = [0,1];
+xlimits = [0,1];
+
+colPS   = 'k';
+colACF1 = 'r';
+mksize  = 10;
+
+ax0 = subplot('Position',pos0);
+hold on
+plot(ax0,log10(sizeAR_vals), mean_diff_PS_small, 'LineWidth', linethickness,...
+    'Color',colPS,'Marker','^', 'MarkerSize',mksize)
+plot(ax0,log10(sizeAR_vals), mean_diff_ACF1_small, 'LineWidth', linethickness,...
+    'Color',colACF1,'Marker','s', 'MarkerSize',mksize)
+ylabel('reconstructed value for \mu')
+xlabel('time series length  (log10)')
+legend('PS', 'ACF1')
+annotation_string = '(0\leq\mu\leq 0.4)';
+ann1 = annotation('textbox',...
+    pos0 + [0.02 0 0 0],...
+    'String','a',...
+    'FontSize', 30',...
+    'LineStyle', 'none',...
+    'FitBoxToText', 'off',...
+    'FontName', 'Times New Roman');
+ann2 = annotation('textbox',...
+    pos0 + [0.05 -0.008 0 0],...
+    'String',annotation_string,...
+    'FontSize', 20',...
+    'LineStyle', 'none',...
+    'FitBoxToText', 'off',...
+    'FontName', 'Times New Roman');
+set(gca,'YGrid','on','XGrid','on','XAxisLocation','bottom',...
+    'box','on','FontSize',fontsize, 'FontName', 'Times New Roman')
+
+
+ax1 = subplot('Position',pos1);
+hold on
+plot(ax1,log10(sizeAR_vals), mean_diff_PS_big, 'LineWidth', linethickness,...
+    'Color',colPS,'Marker','^', 'MarkerSize',mksize)
+plot(ax1,log10(sizeAR_vals), mean_diff_ACF1_big, 'LineWidth', linethickness,...
+    'Color',colACF1,'Marker','s', 'MarkerSize',mksize)
+ylabel('reconstructed value for \mu')
+xlabel('time series length  (log10)')
+legend('PS', 'ACF1')
+annotation_string = '(0.6\leq\mu\leq 1)';
+ann1 = annotation('textbox',...
+    pos1 + [0.02 0 0 0],...
+    'String','b',...
+    'FontSize', 30',...
+    'LineStyle', 'none',...
+    'FitBoxToText', 'off',...
+    'FontName', 'Times New Roman');
+ann2 = annotation('textbox',...
+    pos1 + [0.05 -0.008 0 0],...
+    'String',annotation_string,...
+    'FontSize', 20',...
+    'LineStyle', 'none',...
+    'FitBoxToText', 'off',...
+    'FontName', 'Times New Roman');
+set(gca,'YGrid','on','XGrid','on','XAxisLocation','bottom',...
+    'box','on','FontSize',fontsize, 'FontName', 'Times New Roman')
+
+clear plotPS2 plotPS6
+clear ann1 ann2 pos0 pos1
+clear fontsize linethickness ylimits xlimits colPS colACF1 mksize

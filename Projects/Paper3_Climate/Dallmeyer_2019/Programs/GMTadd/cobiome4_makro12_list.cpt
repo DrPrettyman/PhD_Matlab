@@ -1,0 +1,15 @@
+#***** colortable Biome GMT, only used to display the colorbar with a list of short biome acronyms ****
+#
+0       255     255     255     23      255     255       255     ;W
+23     	13   	65   	38   	66      13      65        38      ;trF
+66	20	64     	139     200     20	64        139     ;waF
+200     11	136     52	251     11     	136       52	  ;teF
+251     54      167     177     359     54      167       177	  ;boF
+359     122     79      18      444     122     79        18      ;SAV
+444     167     247     18      488     167     247    	  18      ;GRA
+488     253     253     90      542     253     253       90      ;DE
+542	97	80	137	670	97	80	  137	  ;TUN
+670	130	168	247	800	130	168	  247	  ;ICE
+
+B       black
+F       white

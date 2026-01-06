@@ -1,0 +1,8 @@
+# 6k BNS for the PFT-based biomisation and the climate-based biomisation, against BIOME6000 reconstructions (Rec).
+
+#    	Model	      PFTvsRec CLIvsRec 
+1	MPI-ESM-T63	0.72	0.69
+2	IPSL-ESM-T31	0.54	0.55
+3	HadGEM2-ESM	0.69	0.7
+4	CLIM-LPJ	0.5	0.71
+5	MIROC-ESM	0.44	0.45

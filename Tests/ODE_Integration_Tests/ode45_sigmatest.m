@@ -1,0 +1,139 @@
+
+
+%% Setup
+
+B = struct;
+number_of_types = 3;
+
+T = 1;
+delta_t = 0.001;
+sample_f = 10;
+t = (0:delta_t:T)';
+t = t(1:sample_f:end);
+N = size(t,1);
+cp = @(t)@(x)(0);
+initial_z = 0;
+sigma = 0.3;
+
+clear t
+
+for i = 1:number_of_types
+    B(i).T = T;
+    B(i).N = N;
+    B(i).sample_f = sample_f;
+    B(i).delta_t = delta_t;
+    B(i).cp = cp;
+    B(i).initial_z = initial_z;
+    B(i).sigma = @(t)sigma;
+end
+clear i
+
+% A forced transition
+B(1).type = '2';
+B(1).sigma = 2;
+
+% A genuine bifurcation transition
+B(2).type = '16';
+B(2).sigma = 16;
+
+% A noise-induced transition
+B(3).type = '100';
+B(3).sigma = 100;
+
+clear number_of_types
+clear T delta_t sample_f N cp initial_z sigma
+
+%% Calculations
+number_of_types = size(B,2);
+
+no_trials = 3;
+for i = 1:number_of_types
+    B(i).no_trials = no_trials;
+end
+clear i no_trials 
+
+options=odeset('AbsTol', 10^(-5));
+for i = 1:number_of_types
+    dispmsg = ['calc type ',num2str(i),': ',B(i).type];
+    disp(dispmsg)
+    clear dispmsg
+    B(i).Zarray =...
+        zeros(B(i).N, B(i).no_trials);
+    B(i).ACF1array =...
+        zeros(B(i).no_trials,1);
+    B(i).VARarray =...
+        zeros(B(i).no_trials,1);
+    B(i).wSTDarray =...
+        zeros(B(i).no_trials,1);
+    
+    for k = 1:B(i).no_trials
+        [t, z] =...
+            ode45(@(t,x)(B(i).sigma*randn(1,1)),...
+            (0:B(i).delta_t:B(i).T),0,options);
+        z = z(1:B(i).sample_f:end);
+        size(z)
+        B(i).ACF1array(k) =...
+            ACF(z,1);
+        B(i).VARarray(k) =...
+            var(z);
+        w_z = zeros(size(z));
+        for j = 2:size(z,1)
+            w_z(j) = z(j) - z(j-1);
+        end
+        clear j
+        B(i).wSTDarray(k) =...
+            std(w_z);
+        B(i).Zarray(:,k) = z;
+        dispmsg = ['comp ',num2str(k),' trials'];
+        disp(dispmsg)
+        clear dispmsg
+    end
+    B(i).t =...
+        t(1:B(i).sample_f:end);
+    B(i).t1 =...
+        linspace(0,1,B(i).N)';
+    
+    clear k t z w_z
+
+    B(i).mean_acf =...
+        mean(B(i).ACF1array);
+    B(i).mean_var =...
+        mean(B(i).VARarray);
+    B(i).mean_wstd =...
+        mean(B(i).wSTDarray);
+    
+    
+    
+end
+clear i 
+clear number_of_types options
+
+%%
+number_of_types = size(B,2);
+
+figure 
+hold on
+
+for i = 1:number_of_types
+    disp([B(i).type,', wstd= ',num2str(B(i).mean_wstd)]);
+    t = linspace(0,B(i).T,size(B(i).Zarray(:,1),1))';
+    plot(t, B(i).Zarray(:,1));
+end
+disp('----------')
+for i = 1:number_of_types
+    disp([B(i).type,', acf1= ',num2str(B(i).mean_acf)]);
+
+end
+
+clear i number_of_types t
+
+
+
+
+
+
+
+
+
+
+

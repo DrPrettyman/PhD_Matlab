@@ -1,0 +1,3 @@
+Sampling Frequency = 50Hz
+N = 25000 %TPA window size
+mV = 10 %Moving average filter window size

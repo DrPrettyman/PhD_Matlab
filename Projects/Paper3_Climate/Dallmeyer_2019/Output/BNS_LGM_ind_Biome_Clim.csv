@@ -1,0 +1,14 @@
+# LGM BNS for all individual biomes and models based on the BIOME1(climate)based biomisations, against BIOME6000 reconstructions
+
+
+#        Model	       MPI-T63 MPI-T31 IPSL31  IPSL63   MIROC  CLIMBER
+1	trop.forest	0.51	0.41	0.30	-2.00	0.23	0.61
+2	warm.forest	0.57	0.43	0.33	-2.00	0.26	0.00
+3	temp.forest	0.61	0.27	0.44	-2.00	0.36	0.24
+4	bor.forest	0.68	0.35	0.53	-2.00	0.35	0.31
+5	Savanna		0.00	0.00	0.00	-2.00	0.00	0.00
+6	Grassland	0.53	0.24	0.42	-2.00	0.31	0.20
+7	Desert		0.25	0.33	0.09	-2.00	0.00	0.00
+8	Tundra		0.83	0.03	0.84	-2.00	0.59	0.15
+9	pol.desert	-2.0	-2.0	-2.0	-2.0	-2.0	-2.0
+0	total		0.59	0.26	0.45	-2.00	0.34	0.23

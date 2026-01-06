@@ -1,0 +1,13 @@
+# PI total BNS for the PFT-based biomisation and the climate-based biomisation, against BIOME6000 reconstructions (Rec). Simulations for which no BNS was calculated are assigend to -2.0!
+
+# 	Model         PFTvsRec CLIvsRec
+1 	MPI-ESM-T63	0.74	0.67
+2	MPI-ESM-T31	0.49	0.42
+3	IPSL-ESM-T31	0.51	0.47
+4	IPSL-ESM-T63	0.55	0.65
+5	HadGEM2-ESM	0.67	0.64
+6	CLIM-LPJ	0.56	0.66
+7	MIROC-ESM	0.40	0.41
+8	CLIMBER		0.48	0.26
+9	CRU-TS4		-2.0	0.83
+10	CRU-TS4_T63	-2.0	0.73

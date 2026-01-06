@@ -1,0 +1,13 @@
+# kappa for all individual biomes and models based on the BIOME1(climate)-biomisations, against RF99
+
+        Model	       MPI-T63 MPI-T31 IPSL31  IPSL63  HadGEM2 CLIM-LPJ MIROC  CLIMBER CRUTS4-T63
+1	trop.forest	0.51	0.53	0.35	0.71	0.59	0.72	0.33	0.58	0.72
+2	warm.forest	0.03	0.00	0.00	0.09	0.01	0.06	0.00	0.00	0.07
+3	temp.forest	0.66	0.57	0.61	0.62	0.57	0.63	0.55	0.46	0.63
+4	bor.forest	0.64	0.26	0.68	0.68	0.71	0.55	0.64	0.74	0.69
+5	Savanna		0.46	0.47	0.34	0.56	0.47	0.53	0.56	0.35	0.52	
+6	Grassland	0.45	0.41	0.38	0.59	0.52	0.54	0.58	0.53	0.55
+7	Desert		0.73	0.70	0.64	0.71	0.71	0.69	0.83	0.74	0.72
+8	Tundra		0.58	0.38	0.45	0.60	0.57	0.52	0.53	0.32	0.63
+9	pol.desert	0.98	0.97	0.97	0.97	0.99	0.97	0.99	0.96	0.97	
+0	total		0.65	0.56	0.61	0.70	0.66	0.66	0.66	0.62	0.68	

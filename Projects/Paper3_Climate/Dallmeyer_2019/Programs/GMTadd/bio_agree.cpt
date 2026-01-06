@@ -1,0 +1,20 @@
+# extracted from GRID-Arendal
+# http://www.grida.no/graphicslib/detail/mean-surface-temperature_c7e4
+#
+# colortable for displaying the BNS values for each site
+# 
+# COLOR_MODEL = RGB
+-0.1 255 255 255  0.0000001 255 255 255
+0.0000001   30  92 179    0.1  30  92 179
+0.1   4 161 230   0.2  4 161 230
+0.2 102 204 206   0.3 102 204 206
+0.3 192 229 136   0.4 192 229 136
+0.4 243 240  29   0.5 243 240  29
+0.5 254 222  39   0.6 254 222  39
+0.6 248 157  14   0.7 248 157  14
+0.7 241  71  28   0.8 241  71  28
+0.8 189  31  40   0.9 189  31  40
+0.9 145  27  32   1.0 145  27  32
+B   0   0   0
+F 255 255 255
+N 255   0   0
